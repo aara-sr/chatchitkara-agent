@@ -1,4 +1,4 @@
-# Chitkara Enterprise Knowledge
+# Chitkara Enterprise Knowledge Agent
 
 A public, no-login knowledge chat frontend for Chitkara Enterprise. It provides a ChatGPT-style experience while keeping Microsoft Foundry entirely behind a separate backend API.
 
