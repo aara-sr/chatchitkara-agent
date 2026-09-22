@@ -17,7 +17,7 @@ export function ChatLayout() {
   const [pendingMessage, setPendingMessage] = useState<string>();
   const [sidebarVisible, setSidebarVisible] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect -- initial visibility depends on viewport width, unknown until mount.
-  useEffect(() => { setSidebarVisible(window.innerWidth > 720); }, []);
+  useEffect(() => { setSidebarVisible(window.innerWidth > 900); }, []);
   const active = useMemo(() => conversations.find((conversation) => conversation.id === activeId), [activeId, conversations]);
   const onUpdate = (patch: Parameters<typeof update>[1]) => { if (active) update(active.id, patch); };
   const { sendMessage, stop, isStreaming, error, clearError } = useChat(active, onUpdate);
@@ -27,7 +27,7 @@ export function ChatLayout() {
     const timer = window.setTimeout(() => { setPendingMessage(undefined); void sendMessage(message); }, 0);
     return () => window.clearTimeout(timer);
   }, [active, pendingMessage, sendMessage]);
-  const newChat = () => { setActiveId(undefined); if (window.innerWidth <= 720) setSidebarVisible(false); };
+  const newChat = () => { setActiveId(undefined); if (window.innerWidth <= 900) setSidebarVisible(false); };
   const send = (message: string) => { if (!active) { const conversation = addConversation(); setActiveId(conversation.id); setPendingMessage(message); } else void sendMessage(message); };
   return (
     <main className="app-shell">
@@ -35,7 +35,7 @@ export function ChatLayout() {
       <Sidebar
         conversations={conversations}
         activeId={activeId}
-        onSelect={(id) => { setActiveId(id); if (window.innerWidth <= 720) setSidebarVisible(false); }}
+        onSelect={(id) => { setActiveId(id); if (window.innerWidth <= 900) setSidebarVisible(false); }}
         onNew={newChat}
         onDelete={(id) => { removeConversation(id); if (id === activeId) setActiveId(undefined); }}
         open={sidebarVisible}
