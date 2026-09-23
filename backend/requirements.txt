@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+azure-ai-projects<2.7.0,>=2.2.0
+azure-identity
+openai
+agent-framework-foundry==1.13.1
+agent-framework-orchestrations
